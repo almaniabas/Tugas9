@@ -66,7 +66,7 @@
         <!-- MENU -->
         <div class="row g-4">
             <div class="col-md-3">
-                <a href="mahasiswa.php" class="text-decoration-none">
+                <a href="mahasiswa/mahasiswa.php" class="text-decoration-none">
                     <div class="card shadow-sm card-menu p-4 text-center">
                         <h5>👨‍🎓 Data Mahasiswa</h5>
                     </div>
@@ -74,7 +74,7 @@
             </div>
 
             <div class="col-md-3">
-                <a href="dosen.php" class="text-decoration-none">
+                <a href="dosen/dosen.php" class="text-decoration-none">
                     <div class="card shadow-sm card-menu p-4 text-center">
                         <h5>👨‍🏫 Data Dosen</h5>
                     </div>
@@ -82,7 +82,7 @@
             </div>
 
             <div class="col-md-3">
-                <a href="matkul.php" class="text-decoration-none">
+                <a href="matkul/matkul.php" class="text-decoration-none">
                     <div class="card shadow-sm card-menu p-4 text-center">
                         <h5>📘 Data Mata Kuliah</h5>
                     </div>
@@ -90,7 +90,7 @@
             </div>
 
             <div class="col-md-3">
-                <a href="nilai.php" class="text-decoration-none">
+                <a href="nilai/nilai.php" class="text-decoration-none">
                     <div class="card shadow-sm card-menu p-4 text-center">
                         <h5>📝 Data Nilai</h5>
                     </div>

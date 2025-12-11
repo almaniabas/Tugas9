@@ -1,4 +1,4 @@
-<?php include "koneksi.php"; ?>
+<?php include "../koneksi.php"; ?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -13,6 +13,8 @@
     <div class="container py-5">
         <h3 class="mb-4 text-center">📝 Data Nilai Mahasiswa</h3>
 
+        <a href="tambah_nilai.php" class="btn btn-primary mb-3">+ Tambah Nilai</a>
+
         <table class="table table-striped table-hover shadow-sm">
             <thead class="table-dark">
                 <tr>
@@ -22,6 +24,7 @@
                     <th>Dosen</th>
                     <th>Nilai Angka</th>
                     <th>Huruf</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,25 +37,28 @@
                 JOIN tbl_matkul mk ON n.kodeMatkul = mk.kodeMatkul
                 JOIN tbl_dosen d ON n.nidn = d.nidn
                 ORDER BY n.id_nilai ASC
-            ";
-
+                ";
                 $data = mysqli_query($koneksi, $query);
                 while ($row = mysqli_fetch_assoc($data)) {
                     echo "
-                <tr>
-                    <td>{$row['id_nilai']}</td>
-                    <td>{$row['nama_mhs']}</td>
-                    <td>{$row['namaMatkul']}</td>
-                    <td>{$row['nama_dosen']}</td>
-                    <td>{$row['nilai']}</td>
-                    <td>{$row['nilaiHuruf']}</td>
-                </tr>";
+                    <tr>
+                        <td>{$row['id_nilai']}</td>
+                        <td>{$row['nama_mhs']}</td>
+                        <td>{$row['namaMatkul']}</td>
+                        <td>{$row['nama_dosen']}</td>
+                        <td>{$row['nilai']}</td>
+                        <td>{$row['nilaiHuruf']}</td>
+                        <td>
+                            <a href='edit_nilai.php?id_nilai={$row['id_nilai']}' class='btn btn-warning btn-sm'>Edit</a>
+                            <a href='hapus_nilai.php?id_nilai={$row['id_nilai']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Hapus data nilai ini?\")'>Hapus</a>
+                        </td>
+                    </tr>";
                 }
                 ?>
             </tbody>
         </table>
 
-        <a href="index.php" class="btn btn-secondary mt-3">Kembali</a>
+        <a href="../index.php" class="btn btn-secondary mt-3">Kembali</a>
     </div>
 
 </body>
