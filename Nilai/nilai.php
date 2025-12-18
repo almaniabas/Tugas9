@@ -1,4 +1,7 @@
-<?php include "../koneksi.php"; ?>
+<?php
+include "../koneksi.php";
+include "../blok.php";
+?>
 <!DOCTYPE html>
 <html lang="id">
 

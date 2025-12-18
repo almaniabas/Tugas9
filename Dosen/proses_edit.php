@@ -1,5 +1,6 @@
 <?php
 include "../koneksi.php";
+include "../blok.php";
 
 $nidn  = $_POST['nidn'];
 $nama  = $_POST['nama'];

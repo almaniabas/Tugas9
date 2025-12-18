@@ -1,6 +1,10 @@
 <?php
 include "../koneksi.php";
-
+include "../blok.php";
+if ($_SESSION['role'] == 'mhs') {
+    header("Location: mahasiswa.php");
+    exit;
+}
 $nim = $_GET['nim'];
 
 $data = mysqli_query($koneksi, "SELECT * FROM tbl_mahasiswa WHERE nim='$nim'");

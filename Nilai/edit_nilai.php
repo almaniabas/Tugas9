@@ -1,5 +1,10 @@
 <?php
 include "../koneksi.php";
+include "../blok.php";
+if ($_SESSION['role'] == 'mhs') {
+    header("Location: nilai.php");
+    exit;
+}
 
 $id_nilai = $_GET['id_nilai'];
 

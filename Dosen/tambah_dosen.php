@@ -1,4 +1,11 @@
-<?php include "../koneksi.php"; ?>
+<?php
+include "../koneksi.php";
+include "../blok.php";
+if ($_SESSION['role'] == 'mhs') {
+    header("Location: dosen.php");
+    exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="id">

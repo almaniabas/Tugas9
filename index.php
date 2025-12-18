@@ -1,3 +1,6 @@
+<?php
+include "blok.php";
+?>
 <!DOCTYPE html>
 <html lang="id">
 
@@ -62,7 +65,6 @@
                 NIM: <b>202404020</b> • Prodi: <b>TRPL</b> • Angkatan: <b>2024</b>
             </p>
         </div>
-
         <!-- MENU -->
         <div class="row g-4">
             <div class="col-md-3">
@@ -94,6 +96,11 @@
                     <div class="card shadow-sm card-menu p-4 text-center">
                         <h5>📝 Data Nilai</h5>
                     </div>
+                </a>
+            </div>
+            <div class="text-end mb-4">
+                <a href="logout.php" class="btn btn-outline-danger btn-sm">
+                    🚪 Logout
                 </a>
             </div>
         </div>

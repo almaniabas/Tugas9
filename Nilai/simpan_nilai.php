@@ -1,5 +1,10 @@
 <?php
 include "../koneksi.php";
+include "../blok.php";
+if ($_SESSION['role'] == 'mhs') {
+    header("Location: nilai.php");
+    exit;
+}
 
 $nim        = $_POST['nim'];
 $kodeMatkul = $_POST['kodeMatkul'];

@@ -1,5 +1,10 @@
 <?php
 include "../koneksi.php";
+include "../blok.php";
+if ($_SESSION['role'] == 'mhs') {
+    header("Location: mahasiswa.php");
+    exit;
+}
 
 if (isset($_GET['nim'])) {
     $nim = $_GET['nim'];

@@ -1,5 +1,10 @@
 <?php
 include "../koneksi.php";
+include "../blok.php";
+if ($_SESSION['role'] == 'mhs') {
+    header("Location: dosen.php");
+    exit;
+}
 
 if (isset($_GET['nidn'])) {
     $nidn = $_GET['nidn'];
