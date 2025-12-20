@@ -1,26 +1,35 @@
 <?php
 include "../koneksi.php";
 include "../blok.php";
+
 if ($_SESSION['role'] == 'mhs') {
     header("Location: dosen.php");
     exit;
 }
 
-$nidn  = $_POST['nidn'];
-$nama  = $_POST['nama'];
-$prodi = $_POST['prodi'];
-$email = $_POST['email'];
+if (isset($_POST['simpan'])) {
 
-$query = "
-    INSERT INTO tbl_dosen (nidn, nama, prodi, email)
-    VALUES ('$nidn', '$nama', '$prodi', '$email')
-";
+    $nidn  = $_POST['nidn'];
+    $nama  = $_POST['nama'];
+    $prodi = $_POST['prodi'];
+    $email = $_POST['email'];
 
-$hasil = mysqli_query($koneksi, $query);
+    $namaFile = $_FILES['fileFoto']['name'];
+    $tmpFile  = $_FILES['fileFoto']['tmp_name'];
 
-if ($hasil) {
-    header("Location: dosen.php");
-    exit;
-} else {
-    echo "Gagal update: " . mysqli_error($koneksi);
+    $folder = "../folderfoto/";
+    $path   = $folder . $namaFile;
+
+    if (move_uploaded_file($tmpFile, $path)) {
+
+        $query = "INSERT INTO tbl_dosen (nidn, nama, prodi, email, foto)
+                  VALUES ('$nidn', '$nama', '$prodi', '$email', '$namaFile')";
+
+        mysqli_query($koneksi, $query);
+        header("Location: dosen.php");
+        exit;
+    } else {
+        echo "File gagal di upload!";
+        echo "<br><a href='tambah_dosen.php'>Kembali</a>";
+    }
 }

@@ -21,8 +21,8 @@ if ($_SESSION['role'] == 'mhs') {
     <div class="container py-5">
         <h3 class="mb-4">➕ Tambah Dosen</h3>
 
-        <form action="" method="POST">
-            <div class="mb-3">
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class=" mb-3">
                 <label>NIDN</label>
                 <input type="text" name="nidn" class="form-control" required>
             </div>
@@ -34,12 +34,24 @@ if ($_SESSION['role'] == 'mhs') {
 
             <div class="mb-3">
                 <label>Prodi</label>
-                <input type="text" name="prodi" class="form-control" required>
+                <select name="prodi" class="form-select" required>
+                    <option value="">-- Pilih Prodi --</option>
+                    <option value="TRPL">TRPL</option>
+                    <option value="TRM">TRM</option>
+                    <option value="TRMK">TRMK</option>
+                    <option value="TL">TL</option>
+                </select>
             </div>
+
 
             <div class="mb-3">
                 <label>Email</label>
                 <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Foto</label>
+                <input type="file" name="fileFoto" class="form-control" required>
             </div>
 
             <button type="submit" name="simpan" class="btn btn-success">Simpan</button>
@@ -48,19 +60,31 @@ if ($_SESSION['role'] == 'mhs') {
 
         <?php
         if (isset($_POST['simpan'])) {
-            $nidn = $_POST['nidn'];
-            $nama = $_POST['nama'];
+
+            $nidn  = $_POST['nidn'];
+            $nama  = $_POST['nama'];
             $prodi = $_POST['prodi'];
             $email = $_POST['email'];
 
-            $query = "INSERT INTO tbl_dosen (nidn, nama, prodi, email) VALUES ('$nidn', '$nama', '$prodi', '$email')";
-            $hasil = mysqli_query($koneksi, $query);
+            $namaFile = $_FILES['fileFoto']['name'];
+            $tmpFile  = $_FILES['fileFoto']['tmp_name'];
 
-            if ($hasil) {
-                header("Location: dosen.php");
-                exit;
+            $folder = "../folderFoto/";
+            $path   = $folder . $namaFile;
+
+            if (move_uploaded_file($tmpFile, $path)) {
+
+                $query = "INSERT INTO tbl_dosen (nidn, foto, nama, prodi, email)
+                  VALUES ('$nidn', '$namaFile', '$nama', '$prodi', '$email')";
+
+                if (mysqli_query($koneksi, $query)) {
+                    header("Location: dosen.php");
+                    exit;
+                } else {
+                    echo "Gagal menyimpan: " . mysqli_error($koneksi);
+                }
             } else {
-                echo "Gagal menyimpan: " . mysqli_error($koneksi);
+                echo "Upload foto gagal!";
             }
         }
         ?>

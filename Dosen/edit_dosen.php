@@ -26,7 +26,7 @@ $row = mysqli_fetch_assoc($data);
     <div class="container py-5">
         <h3 class="mb-4">✏️ Edit Data Dosen</h3>
 
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label>NIDN (Tidak bisa diubah)</label>
                 <input type="text" class="form-control" value="<?= $row['nidn'] ?>" disabled>
@@ -53,6 +53,12 @@ $row = mysqli_fetch_assoc($data);
                 <input type="email" name="email" class="form-control" value="<?= $row['email'] ?>" required>
             </div>
 
+            <div class="mb-3">
+                <label>Foto</label>
+                <img src="../folderfoto/<?= $row['foto']; ?>" width="100" class="mb-2">
+                <input type="file" name="fileFoto" class="form-control">
+            </div>
+
             <button type="submit" name="update" class="btn btn-primary">Update</button>
             <a href="dosen.php" class="btn btn-secondary">Kembali</a>
         </form>
@@ -63,7 +69,16 @@ $row = mysqli_fetch_assoc($data);
             $prodi = $_POST['prodi'];
             $email = $_POST['email'];
 
-            $query = "UPDATE tbl_dosen SET nama='$nama', prodi='$prodi', email='$email' WHERE nidn='$nidn'";
+            $namaFile = $_FILES['fileFoto']['name'];
+            $tmpFile  = $_FILES['fileFoto']['tmp_name'];
+            $folder   = "../folderFoto/";
+            $path     = $folder . $namaFile;
+
+            move_uploaded_file($tmpFile, $path);
+
+            $foto = $namaFile;
+
+            $query = "UPDATE tbl_dosen SET nama='$nama', prodi='$prodi', email='$email', foto='$foto' WHERE nidn='$nidn'";
             $hasil = mysqli_query($koneksi, $query);
 
             if ($hasil) {

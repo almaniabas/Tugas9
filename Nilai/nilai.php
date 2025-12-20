@@ -21,13 +21,13 @@ include "../blok.php";
         <table class="table table-striped table-hover shadow-sm">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Mahasiswa</th>
-                    <th>Mata Kuliah</th>
-                    <th>Dosen</th>
-                    <th>Nilai Angka</th>
-                    <th>Huruf</th>
-                    <th>Aksi</th>
+                    <th style="text-align:center">ID</th>
+                    <th style="text-align:center">Mahasiswa</th>
+                    <th style="text-align:center">Mata Kuliah</th>
+                    <th style="text-align:center">Dosen</th>
+                    <th style="text-align:center">Nilai Angka</th>
+                    <th style="text-align:center">Huruf</th>
+                    <th style="text-align:center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,13 +45,13 @@ include "../blok.php";
                 while ($row = mysqli_fetch_assoc($data)) {
                     echo "
                     <tr>
-                        <td>{$row['id_nilai']}</td>
-                        <td>{$row['nama_mhs']}</td>
-                        <td>{$row['namaMatkul']}</td>
-                        <td>{$row['nama_dosen']}</td>
-                        <td>{$row['nilai']}</td>
-                        <td>{$row['nilaiHuruf']}</td>
-                        <td>
+                        <td style='text-align:center'>{$row['id_nilai']}</td>
+                        <td style='text-align:center'>{$row['nama_mhs']}</td>
+                        <td style='text-align:center'>{$row['namaMatkul']}</td>
+                        <td style='text-align:center'>{$row['nama_dosen']}</td>
+                        <td style='text-align:center'>{$row['nilai']}</td>
+                        <td style='text-align:center'>{$row['nilaiHuruf']}</td>
+                        <td style='text-align:center'>
                             <a href='edit_nilai.php?id_nilai={$row['id_nilai']}' class='btn btn-warning btn-sm'>Edit</a>
                             <a href='hapus_nilai.php?id_nilai={$row['id_nilai']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Hapus data nilai ini?\")'>Hapus</a>
                         </td>
@@ -61,7 +61,7 @@ include "../blok.php";
             </tbody>
         </table>
 
-        <a href="../index.php" class="btn btn-secondary mt-3">Kembali</a>
+        <a href=" ../index.php" class="btn btn-secondary mt-3">Kembali</a>
     </div>
 
 </body>

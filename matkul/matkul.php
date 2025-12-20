@@ -21,11 +21,11 @@ include "../blok.php";
         <table class="table table-striped table-hover shadow-sm">
             <thead class="table-dark">
                 <tr>
-                    <th>Kode</th>
-                    <th>Mata Kuliah</th>
-                    <th>SKS</th>
-                    <th>NIDN Dosen</th>
-                    <th>Aksi</th>
+                    <th style="text-align:center">Kode</th>
+                    <th style="text-align:center">Mata Kuliah</th>
+                    <th style="text-align:center">SKS</th>
+                    <th style="text-align:center">NIDN Dosen</th>
+                    <th style="text-align:center">Aksi</th>
                 </tr>
             </thead>
 
@@ -35,11 +35,11 @@ include "../blok.php";
                 while ($row = mysqli_fetch_assoc($data)) {
                     echo "
                 <tr>
-                    <td>{$row['kodeMatkul']}</td>
-                    <td>{$row['namaMatkul']}</td>
-                    <td>{$row['sks']}</td>
-                    <td>{$row['nidn']}</td>
-                    <td>
+                    <td style='text-align:center'>{$row['kodeMatkul']}</td>
+                    <td style='text-align:center'>{$row['namaMatkul']}</td>
+                    <td style='text-align:center'>{$row['sks']}</td>
+                    <td style='text-align:center'>{$row['nidn']}</td>
+                    <td style='text-align:center'>
                         <a href='edit_matkul.php?kodeMatkul={$row['kodeMatkul']}' class='btn btn-warning btn-sm'>Edit</a>
                         <a href='hapus_matkul.php?kodeMatkul={$row['kodeMatkul']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Hapus mata kuliah ini?\")'>Hapus</a>
                     </td>
@@ -49,7 +49,7 @@ include "../blok.php";
             </tbody>
         </table>
 
-        <a href="../index.php" class="btn btn-secondary mt-3">Kembali</a>
+        <a href=" ../index.php" class="btn btn-secondary mt-3">Kembali</a>
     </div>
 
 </body>

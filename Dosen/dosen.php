@@ -21,35 +21,37 @@ include "../blok.php";
         <table class="table table-striped table-hover shadow-sm">
             <thead class="table-dark">
                 <tr>
-                    <th>NIDN</th>
-                    <th>Nama</th>
-                    <th>Prodi</th>
-                    <th>Email</th>
-                    <th>Aksi</th>
+                    <th style="text-align:center">NIDN</th>
+                    <th style="text-align:center">Foto</th>
+                    <th style="text-align:center">Nama</th>
+                    <th style="text-align:center">Prodi</th>
+                    <th style="text-align:center">Email</th>
+                    <th style="text-align:center">Aksi</th>
                 </tr>
             </thead>
 
             <tbody>
                 <?php
                 $data = mysqli_query($koneksi, "SELECT * FROM tbl_dosen ORDER BY nidn ASC");
-                while ($row = mysqli_fetch_assoc($data)) {
-                    echo "
-                <tr>
-                    <td>{$row['nidn']}</td>
-                    <td>{$row['nama']}</td>
-                    <td>{$row['prodi']}</td>
-                    <td>{$row['email']}</td>
-                    <td>
-                        <a href='edit_dosen.php?nidn={$row['nidn']}' class='btn btn-warning btn-sm'>Edit</a>
-                        <a href='hapus_dosen.php?nidn={$row['nidn']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Hapus dosen ini?\")'>Hapus</a>
-                    </td>
-                </tr>";
+                while ($dosen = mysqli_fetch_array($data)) {
+                    echo "<tr>";
+                    echo "<td style='text-align:center'>{$dosen['nidn']}</td>";
+                    echo "<td style='text-align:center'>
+                    <img src='../folderFoto/{$dosen['foto']}' width='60' height='60'></td>";
+                    echo "<td style='text-align:center'>{$dosen['nama']}</td>";
+                    echo "<td style='text-align:center'>{$dosen['prodi']}</td>";
+                    echo "<td style='text-align:center'>{$dosen['email']}</td>";
+                    echo "<td style='text-align:center'>
+                            <a href='edit_dosen.php?nidn={$dosen['nidn']}' class='btn btn-warning btn-sm'>Edit</a>
+                            <a href='hapus_dosen.php?nidn={$dosen['nidn']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Hapus dosen ini?\")'>Hapus</a>
+                          </td>";
+                    echo "</tr>";
                 }
                 ?>
             </tbody>
         </table>
 
-        <a href="../index.php" class="btn btn-secondary mt-3">Kembali</a>
+        <a href=" ../index.php" class="btn btn-secondary mt-3">Kembali</a>
     </div>
 
 </body>

@@ -21,7 +21,7 @@ if ($_SESSION['role'] == 'mhs') {
     <div class="container py-5">
         <h3 class="mb-4">➕ Tambah Mahasiswa</h3>
 
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label>NIM</label>
                 <input type="text" name="nim" class="form-control" required>
@@ -32,9 +32,15 @@ if ($_SESSION['role'] == 'mhs') {
                 <input type="text" name="nama" class="form-control" required>
             </div>
 
-            <div class="mb-3">
+            <div>
                 <label>Prodi</label>
-                <input type="text" name="prodi" class="form-control" required>
+                <select name="prodi" class="form-select" required>
+                    <option value="">-- Pilih Prodi --</option>
+                    <option value="TRPL">TRPL</option>
+                    <option value="TRM">TRM</option>
+                    <option value="TRMK">TRMK</option>
+                    <option value="TL">TL</option>
+                </select>
             </div>
 
             <div class="mb-3">
@@ -52,10 +58,14 @@ if ($_SESSION['role'] == 'mhs') {
                 </select>
             </div>
 
-
             <div class="mb-3">
                 <label>Email</label>
                 <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Foto</label>
+                <input type="file" name="fileFoto" class="form-control" required>
             </div>
 
             <button type="submit" name="simpan" class="btn btn-success">Simpan</button>
@@ -64,22 +74,31 @@ if ($_SESSION['role'] == 'mhs') {
 
         <?php
         if (isset($_POST['simpan'])) {
-            // Ambil data dari form
-            $nim      = $_POST['nim'];
-            $nama     = $_POST['nama'];
-            $prodi    = $_POST['prodi'];
-            $angkatan = $_POST['angkatan'];
-            $email    = $_POST['email'];
 
-            $query = "INSERT INTO tbl_mahasiswa (nim, nama, prodi, angkatan, email) 
-                      VALUES ('$nim', '$nama', '$prodi', '$angkatan', '$email')";
-            $hasil = mysqli_query($koneksi, $query);
+            $nim  = $_POST['nim'];
+            $nama  = $_POST['nama'];
+            $prodi = $_POST['prodi'];
+            $email = $_POST['email'];
 
-            if ($hasil) {
-                header("Location: mahasiswa.php");
-                exit;
+            $namaFile = $_FILES['fileFoto']['name'];
+            $tmpFile  = $_FILES['fileFoto']['tmp_name'];
+
+            $folder = "../folderFoto/";
+            $path   = $folder . $namaFile;
+
+            if (move_uploaded_file($tmpFile, $path)) {
+
+                $query = "INSERT INTO tbl_mahasiswa (nim, foto, nama, prodi, email)
+                  VALUES ('$nim', '$namaFile', '$nama', '$prodi', '$email')";
+
+                if (mysqli_query($koneksi, $query)) {
+                    header("Location: mahasiswa.php");
+                    exit;
+                } else {
+                    echo "Gagal menyimpan: " . mysqli_error($koneksi);
+                }
             } else {
-                echo "Gagal menyimpan: " . mysqli_error($koneksi);
+                echo "Upload foto gagal!";
             }
         }
         ?>
