@@ -25,6 +25,7 @@ include "../blok.php";
                     <th style="text-align:center">Foto</th>
                     <th style="text-align:center">Nama</th>
                     <th style="text-align:center">Prodi</th>
+                    <th style="text-align:center">Angkatan</th>
                     <th style="text-align:center">Email</th>
                     <th style="text-align:center">Aksi</th>
                 </tr>
@@ -40,6 +41,7 @@ include "../blok.php";
                     <img src='../folderFoto/{$mhs['foto']}' width='60' height='60'></td>";
                     echo "<td style='text-align:center'>{$mhs['nama']}</td>";
                     echo "<td style='text-align:center'>{$mhs['prodi']}</td>";
+                    echo "<td style='text-align:center'>{$mhs['angkatan']}</td>";
                     echo "<td style='text-align:center'>{$mhs['email']}</td>";
                     echo "<td style='text-align:center'>
                             <a href='edit_mahasiswa.php?nim={$mhs['nim']}' class='btn btn-warning btn-sm'>Edit</a>
